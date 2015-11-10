@@ -5,7 +5,7 @@ var server = 'server';
 Package.describe({
     name: "wieldo:angular-formly-transformer",
     summary: "Automate configuration of fields in Angular-Formly",
-    version: "0.0.1",
+    version: "0.0.2",
 
     documentation: 'README.md',
     git: 'https://github.com/wieldo/angular-formly-transformer.git'
