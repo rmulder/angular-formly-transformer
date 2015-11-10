@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular-formly-transformer by wieldo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Angular-formly-transformer</h1>
+      <h2 class="project-tagline">Field configuration transformer for Angular Formly</h2>
+      <a href="https://github.com/wieldo/angular-formly-transformer" class="btn">View on GitHub</a>
+      <a href="https://github.com/wieldo/angular-formly-transformer/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/wieldo/angular-formly-transformer/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="formlytransformer" class="anchor" href="#formlytransformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>FormlyTransformer</h1>
+
+<p>Automate configuration of fields in <a href="http://angular-formly.com">Angular-Formly</a>.</p>
+
+<h2>
+<a id="add-angular-formly" class="anchor" href="#add-angular-formly" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Angular Formly</h2>
+
+<p>There is no official <a href="http://angular-formly.com">Angular-Formly</a> package in Atmosphere so you have to add it manually.</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<pre><code>meteor add wieldo:angular-formly-transformer
+</code></pre>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<ol>
+<li>Add package using <code>meteor add</code> (see above)</li>
+<li>Add angular-formly files to your project</li>
+<li>Add the following dependencies to your AngularJS module:</li>
+</ol>
+
+<div class="highlight highlight-source-js"><pre>angular.module(<span class="pl-s"><span class="pl-pds">'</span>myApp<span class="pl-pds">'</span></span>, [
+    <span class="pl-s"><span class="pl-pds">'</span>formly<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>formlyTransformer<span class="pl-pds">'</span></span>
+  ])</pre></div>
+
+<h2>
+<a id="how-to-use-it" class="anchor" href="#how-to-use-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use it</h2>
+
+<h3>
+<a id="register-transformer" class="anchor" href="#register-transformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Register transformer</h3>
+
+<p>Each transform function has two arguments.</p>
+
+<ul>
+<li>
+<strong>field</strong> - formly field object</li>
+<li>
+<strong>config</strong> - transform configuration for field</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>formlyTransformer.register(<span class="pl-s"><span class="pl-pds">'</span>transformerName<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">field</span>, <span class="pl-smi">config</span>) {
+    <span class="pl-c">// field - formly configuration for field</span>
+    <span class="pl-c">// config - transformer configuration for field</span>
+});</pre></div>
+
+<h3>
+<a id="use-transformer" class="anchor" href="#use-transformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use transformer</h3>
+
+<p>You have to specify two arguments. Array of fields and configuration.</p>
+
+<p>Configuration structure is simple.<br>
+Use field's key as property key.<br>
+Then specify transformers as transformer name-config pairs.</p>
+
+<div class="highlight highlight-source-js"><pre>formlyTransformer.transform(vm.fields, {
+    fieldKey<span class="pl-k">:</span> {
+        transformerName<span class="pl-k">:</span> transformerConfig
+    }
+});</pre></div>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<div class="highlight highlight-source-js"><pre>angular.module(<span class="pl-s"><span class="pl-pds">'</span>myAppName<span class="pl-pds">'</span></span>, [
+    <span class="pl-s"><span class="pl-pds">'</span>formly<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>formlyTransformer<span class="pl-pds">'</span></span>
+  ])
+  .controller(<span class="pl-s"><span class="pl-pds">'</span>demoCtrl<span class="pl-pds">'</span></span>, demoCtrl);
+
+  <span class="pl-k">function</span> <span class="pl-en">demoCtrl</span>(<span class="pl-smi">formlyTransformer</span>) {
+        <span class="pl-k">var</span> vm <span class="pl-k">=</span> <span class="pl-v">this</span>;
+
+        <span class="pl-c">// register upperCaseLabel transformer</span>
+        formlyTransformer.register(<span class="pl-s"><span class="pl-pds">'</span>upperCaseLabel<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">field</span>, <span class="pl-smi">config</span>) {
+            <span class="pl-c">// there is no label!</span>
+            <span class="pl-k">if</span> (<span class="pl-k">!</span>field.templateOptions <span class="pl-k">&amp;&amp;</span> <span class="pl-k">!</span>field.templateOptions.<span class="pl-c1">label</span>) {
+                <span class="pl-k">return</span>;
+            }
+            <span class="pl-c">// yes, there is!</span>
+            <span class="pl-k">if</span>(config <span class="pl-k">===</span> <span class="pl-c1">true</span>) {
+                field.templateOptions.<span class="pl-c1">label</span> <span class="pl-k">=</span> field.templateOptions.<span class="pl-c1">label</span>.<span class="pl-c1">toUpperCase</span>();
+            }
+        });
+
+        vm.fields <span class="pl-k">=</span> [
+            key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>firstName<span class="pl-pds">'</span></span>,
+            type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>input<span class="pl-pds">'</span></span>,
+            templateOptions<span class="pl-k">:</span> {
+                label<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>First name<span class="pl-pds">'</span></span>
+            }
+        ];
+
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>before<span class="pl-pds">'</span></span>, vm.fields[<span class="pl-c1">0</span>].templateOptions.<span class="pl-c1">label</span>); <span class="pl-c">// First name</span>
+
+        formlyTransformer.transform(vm.fields, {
+            firstName<span class="pl-k">:</span> {
+                upperCaseLabel<span class="pl-k">:</span> <span class="pl-c1">true</span>
+            }
+        });
+
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>after<span class="pl-pds">'</span></span>, vm.fields[<span class="pl-c1">0</span>].templateOptions.<span class="pl-c1">label</span>); <span class="pl-c">// FIRST NAME</span>
+  }</pre></div>
+
+<h2>
+<a id="roadmap" class="anchor" href="#roadmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Roadmap</h2>
+
+<ul>
+<li>use formlyConfig.extras.fieldTransform</li>
+</ul>
+
+<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/wieldo/angular-formly-transformer/trend.png" alt="Bitdeli Badge"></a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/wieldo/angular-formly-transformer">Angular-formly-transformer</a> is maintained by <a href="https://github.com/wieldo">wieldo</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-69932737-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
