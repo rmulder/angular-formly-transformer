@@ -104,4 +104,9 @@ angular.module('myAppName', [
   }
 ```
 
+## Roadmap
+- use formlyConfig.extras.fieldTransform
+
 [Angular-Formly]: http://angular-formly.com
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wieldo/angular-formly-transformer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
