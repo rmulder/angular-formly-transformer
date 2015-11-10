@@ -11,5 +11,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.0.1 - 2015-11-09
 
-[Unreleased]: https://github.com/wieldo/angular-formly-transformer/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/wieldo/angular-formly-transformer/compare/v0.0.2...HEAD
 [0.0.2]: https://github.com/wieldo/angular-formly-transformer/compare/v0.0.1...v0.0.2
