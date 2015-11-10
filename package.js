@@ -13,21 +13,26 @@ Package.describe({
 
 Package.onUse(function (api) {
 
-    var packages = [
-        'underscore@1.0.4',
-        'es5-shim@4.1.14',
-        'ecmascript@0.1.6',
-        'angular@1.0.0',
-        'pbastowski:angular2-now@0.3.13',
-        'pbastowski:ecmascript-extras@0.0.2',
-        'angular:angular@1.4.7'
-    ];
+    var packages = {
+        use: [
+            'underscore@1.0.4',
+            'es5-shim@4.1.14',
+            'pbastowski:angular-babel@1.0.2',
+            'pbastowski:angular2-now@0.3.13',
+            'wieldo:angular-formly@7.3.2'
+        ],
+        imply: [
+            'angular@1.0.0',
+            'angular:angular@1.4.7',
+            'wieldo:angular-formly@7.3.2'
+        ]
+    };
 
     api.versionsFrom("METEOR@1.0");
 
-    api.use(packages);
+    api.use(packages.use);
 
-    api.imply(packages);
+    api.imply(packages.imply);
 
     api.addFiles([
         'lib/client/main.js'

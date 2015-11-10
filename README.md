@@ -1,11 +1,11 @@
 FormlyTransformer
 ==========
 
-Automate configuration of fields in Angular-Formly.
+Automate configuration of fields in [Angular-Formly].
 
 ## Add Angular Formly
 
-There is no official [Angular Formly] package in Atmosphere so you have to add it manually.
+There is no official [Angular-Formly] package in Atmosphere so you have to add it manually.
 
 ## Install
 
