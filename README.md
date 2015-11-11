@@ -1,7 +1,7 @@
 FormlyTransformer
 ==========
 
-Automate configuration of fields in [Angular-Formly].
+Better way of field transformation in [Angular-Formly].
 
 ## Install
 
@@ -27,34 +27,26 @@ angular.module('myApp', [
 
 ### Register transformer
 
-Each transform function has two arguments.
+Each transformer has four arguments: fields, model, formOptions, and form.
 
-- **field** - formly field object
-- **config** - transform configuration for field
+See fieldTransform in [formlyConfig] for details.
+
+Transformer is basically the same as fieldTransform method.
+formlyTransform service just wraps all functions into one place.
 
 ```javascript
-formlyTransformer.register('transformerName', function(field, config) {
-    // field - formly configuration for field
-    // config - transformer configuration for field
+formlyTransformer.register(function(fields, model, form, formOptions) {
+    // ...
 });
 ```
 
-### Use transformer
+### Special space in formly field configuration (formlyconfig)
 
-You have to specify two arguments. Array of fields and configuration.
+formlyTransformer creates property with "transformers" key and empty object as value.
 
-Configuration structure is simple.  
-Use field's key as property key.  
-Then specify transformers as transformer name-config pairs.
+Special space is removed after all the transformers are executed.
 
-```javascript
-formlyTransformer.transform(vm.fields, {
-    fieldKey: {
-        transformerName: transformerConfig
-    }
-});
-```
-
+So basically, you can put there all your transformation methods which are based on custom property.
 
 ## Example
 
@@ -63,46 +55,39 @@ angular.module('myAppName', [
     'formly',
     'formlyTransformer'
   ])
+  .run(runApp)
   .controller('demoCtrl', demoCtrl);
+  
+  function runApp(formlyTransformer) {
+        // label upperCaseLabel transformer
+        formlyTransformer.register(function(fields) {
+            fields.forEach((field) => {
+                if(field.transformers.upperCaseLabel && field.templateOptions && field.templateOptions.label) {
+                    field.templateOptions.label = field.templateOptions.label.toUpperCase();
+                }
+            });
+        });
+  }
   
   function demoCtrl(formlyTransformer) {
         var vm = this;
-        
-        // register upperCaseLabel transformer
-        formlyTransformer.register('upperCaseLabel', function(field, config) {
-            // there is no label!
-            if (!field.templateOptions && !field.templateOptions.label) {
-                return;
-            }
-            // yes, there is!
-            if(config === true) {
-                field.templateOptions.label = field.templateOptions.label.toUpperCase();
-            }
-        });
         
         vm.fields = [
             key: 'firstName',
             type: 'input',
             templateOptions: {
                 label: 'First name'
+            },
+            transformers: {
+                upperCaseLabel: true
             }
         ];
         
-        console.log('before', vm.fields[0].templateOptions.label); // First name
-        
-        formlyTransformer.transform(vm.fields, {
-            firstName: {
-                upperCaseLabel: true
-            }
-        });
-        
-        console.log('after', vm.fields[0].templateOptions.label); // FIRST NAME
+        console.log(vm.fields[0].templateOptions.label); // FIRST NAME
   }
 ```
 
-## Roadmap
-- use formlyConfig.extras.fieldTransform
-
 [Angular-Formly]: http://angular-formly.com
+[formlyConfig]: http://docs.angular-formly.com/v7.2.3/docs/formlyconfig
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wieldo/angular-formly-transformer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
