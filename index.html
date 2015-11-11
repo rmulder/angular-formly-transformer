@@ -22,12 +22,7 @@
       <h1>
 <a id="formlytransformer" class="anchor" href="#formlytransformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>FormlyTransformer</h1>
 
-<p>Automate configuration of fields in <a href="http://angular-formly.com">Angular-Formly</a>.</p>
-
-<h2>
-<a id="add-angular-formly" class="anchor" href="#add-angular-formly" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Angular Formly</h2>
-
-<p>There is no official <a href="http://angular-formly.com">Angular-Formly</a> package in Atmosphere so you have to add it manually.</p>
+<p>Better way of field transformation in <a href="http://angular-formly.com">Angular-Formly</a>.</p>
 
 <h2>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
@@ -55,34 +50,25 @@
 <h3>
 <a id="register-transformer" class="anchor" href="#register-transformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Register transformer</h3>
 
-<p>Each transform function has two arguments.</p>
+<p>Each transformer has four arguments: fields, model, formOptions, and form.</p>
 
-<ul>
-<li>
-<strong>field</strong> - formly field object</li>
-<li>
-<strong>config</strong> - transform configuration for field</li>
-</ul>
+<p>See fieldTransform in <a href="http://docs.angular-formly.com/v7.2.3/docs/formlyconfig">formlyConfig</a> for details.</p>
 
-<div class="highlight highlight-source-js"><pre>formlyTransformer.register(<span class="pl-s"><span class="pl-pds">'</span>transformerName<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">field</span>, <span class="pl-smi">config</span>) {
-    <span class="pl-c">// field - formly configuration for field</span>
-    <span class="pl-c">// config - transformer configuration for field</span>
+<p>Transformer is basically the same as fieldTransform method.
+formlyTransform service just wraps all functions into one place.</p>
+
+<div class="highlight highlight-source-js"><pre>formlyTransformer.register(<span class="pl-k">function</span>(<span class="pl-smi">fields</span>, <span class="pl-smi">model</span>, <span class="pl-smi">form</span>, <span class="pl-smi">formOptions</span>) {
+    <span class="pl-c">// ...</span>
 });</pre></div>
 
 <h3>
-<a id="use-transformer" class="anchor" href="#use-transformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use transformer</h3>
+<a id="special-space-in-formly-field-configuration-formlyconfig" class="anchor" href="#special-space-in-formly-field-configuration-formlyconfig" aria-hidden="true"><span class="octicon octicon-link"></span></a>Special space in formly field configuration (formlyconfig)</h3>
 
-<p>You have to specify two arguments. Array of fields and configuration.</p>
+<p>formlyTransformer creates property with "transformers" key and empty object as value.</p>
 
-<p>Configuration structure is simple.<br>
-Use field's key as property key.<br>
-Then specify transformers as transformer name-config pairs.</p>
+<p>Special space is removed after all the transformers are executed.</p>
 
-<div class="highlight highlight-source-js"><pre>formlyTransformer.transform(vm.fields, {
-    fieldKey<span class="pl-k">:</span> {
-        transformerName<span class="pl-k">:</span> transformerConfig
-    }
-});</pre></div>
+<p>So basically, you can put there all your transformation methods which are based on custom property.</p>
 
 <h2>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
@@ -91,48 +77,36 @@ Then specify transformers as transformer name-config pairs.</p>
     <span class="pl-s"><span class="pl-pds">'</span>formly<span class="pl-pds">'</span></span>,
     <span class="pl-s"><span class="pl-pds">'</span>formlyTransformer<span class="pl-pds">'</span></span>
   ])
+  .run(runApp)
   .controller(<span class="pl-s"><span class="pl-pds">'</span>demoCtrl<span class="pl-pds">'</span></span>, demoCtrl);
+
+  <span class="pl-k">function</span> <span class="pl-en">runApp</span>(<span class="pl-smi">formlyTransformer</span>) {
+        <span class="pl-c">// label upperCaseLabel transformer</span>
+        formlyTransformer.register(<span class="pl-k">function</span>(<span class="pl-smi">fields</span>) {
+            fields.forEach((<span class="pl-smi">field</span>)<span class="pl-k"> =&gt;</span> {
+                <span class="pl-k">if</span>(field.transformers.upperCaseLabel <span class="pl-k">&amp;&amp;</span> field.templateOptions <span class="pl-k">&amp;&amp;</span> field.templateOptions.<span class="pl-c1">label</span>) {
+                    field.templateOptions.<span class="pl-c1">label</span> <span class="pl-k">=</span> field.templateOptions.<span class="pl-c1">label</span>.<span class="pl-c1">toUpperCase</span>();
+                }
+            });
+        });
+  }
 
   <span class="pl-k">function</span> <span class="pl-en">demoCtrl</span>(<span class="pl-smi">formlyTransformer</span>) {
         <span class="pl-k">var</span> vm <span class="pl-k">=</span> <span class="pl-v">this</span>;
-
-        <span class="pl-c">// register upperCaseLabel transformer</span>
-        formlyTransformer.register(<span class="pl-s"><span class="pl-pds">'</span>upperCaseLabel<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">field</span>, <span class="pl-smi">config</span>) {
-            <span class="pl-c">// there is no label!</span>
-            <span class="pl-k">if</span> (<span class="pl-k">!</span>field.templateOptions <span class="pl-k">&amp;&amp;</span> <span class="pl-k">!</span>field.templateOptions.<span class="pl-c1">label</span>) {
-                <span class="pl-k">return</span>;
-            }
-            <span class="pl-c">// yes, there is!</span>
-            <span class="pl-k">if</span>(config <span class="pl-k">===</span> <span class="pl-c1">true</span>) {
-                field.templateOptions.<span class="pl-c1">label</span> <span class="pl-k">=</span> field.templateOptions.<span class="pl-c1">label</span>.<span class="pl-c1">toUpperCase</span>();
-            }
-        });
 
         vm.fields <span class="pl-k">=</span> [
             key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>firstName<span class="pl-pds">'</span></span>,
             type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>input<span class="pl-pds">'</span></span>,
             templateOptions<span class="pl-k">:</span> {
                 label<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>First name<span class="pl-pds">'</span></span>
+            },
+            transformers<span class="pl-k">:</span> {
+                upperCaseLabel<span class="pl-k">:</span> <span class="pl-c1">true</span>
             }
         ];
 
-        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>before<span class="pl-pds">'</span></span>, vm.fields[<span class="pl-c1">0</span>].templateOptions.<span class="pl-c1">label</span>); <span class="pl-c">// First name</span>
-
-        formlyTransformer.transform(vm.fields, {
-            firstName<span class="pl-k">:</span> {
-                upperCaseLabel<span class="pl-k">:</span> <span class="pl-c1">true</span>
-            }
-        });
-
-        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>after<span class="pl-pds">'</span></span>, vm.fields[<span class="pl-c1">0</span>].templateOptions.<span class="pl-c1">label</span>); <span class="pl-c">// FIRST NAME</span>
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(vm.fields[<span class="pl-c1">0</span>].templateOptions.<span class="pl-c1">label</span>); <span class="pl-c">// FIRST NAME</span>
   }</pre></div>
-
-<h2>
-<a id="roadmap" class="anchor" href="#roadmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Roadmap</h2>
-
-<ul>
-<li>use formlyConfig.extras.fieldTransform</li>
-</ul>
 
 <p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/wieldo/angular-formly-transformer/trend.png" alt="Bitdeli Badge"></a></p>
 
