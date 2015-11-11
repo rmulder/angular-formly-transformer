@@ -2,7 +2,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.0.0] - 2015-11-11
+### Added
+- Extend transformation function to use models, form instance and form configuration
+- Transformation function has now helper methods in context
+- Method in transfomer context to create new error (this.createError)
+
+### Changed
+- Transformation functions are now using formlyConfig.extras.fieldTransform
+- Transformation functions run on all angular-formly forms (removed formlyTransformer::transform method)
+
+### Removed
+- Transformation functions no longer have unique name
+- formlyTransformer::transform method (see formlyConfig.extras.fieldTransform)
 
 ## [0.0.2] - 2015-11-10
 ### Added
@@ -11,5 +23,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.0.1 - 2015-11-09
 
-[Unreleased]: https://github.com/wieldo/angular-formly-transformer/compare/v0.0.2...HEAD
+[1.0.0]: https://github.com/wieldo/angular-formly-transformer/compare/v1.0.0...v0.0.2
 [0.0.2]: https://github.com/wieldo/angular-formly-transformer/compare/v0.0.1...v0.0.2
