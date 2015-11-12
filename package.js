@@ -16,7 +16,7 @@ Package.onUse(function (api) {
     var packages = {
         use: [
             'underscore@1.0.4',
-            'es5-shim@4.1.14',
+            'es5-shim@4.1.13',
             'pbastowski:angular-babel@1.0.2',
             'pbastowski:angular2-now@0.3.13',
             'wieldo:angular-formly@7.3.2'
@@ -39,4 +39,18 @@ Package.onUse(function (api) {
         'lib/client/formly-transformer.js'
     ], client);
 
+});
+
+Package.onTest(function(api) {
+    api.use([
+        'sanjo:jasmine@0.20.2',
+        'velocity:helpers',
+        'velocity:html-reporter',
+        'angular:angular-mocks@1.4.7',
+        'wieldo:angular-formly-transformer@1.0.0'
+    ]);
+    
+    api.addFiles([
+        'tests/client/formly-transformer-spec.js'
+    ], client);
 });
