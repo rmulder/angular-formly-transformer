@@ -7,4 +7,4 @@ before_install:
 before_script:
   - "export PATH=$HOME/.meteor:$PATH"
 script:
-  - "velocity test-package wieldo:angular-formly-transformer --ci"
+  - "velocity test-package ./ --ci"
