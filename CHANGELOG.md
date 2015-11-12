@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Added
+- Tests and integration with Travis-Ci
+
 ## [1.0.0] - 2015-11-11
 ### Added
 - Extend transformation function to use models, form instance and form configuration
@@ -23,5 +27,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.0.1 - 2015-11-09
 
+[Unreleased]: https://github.com/wieldo/angular-formly-transformer/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/wieldo/angular-formly-transformer/compare/v1.0.0...v0.0.2
 [0.0.2]: https://github.com/wieldo/angular-formly-transformer/compare/v0.0.1...v0.0.2

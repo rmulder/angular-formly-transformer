@@ -1,4 +1,4 @@
-FormlyTransformer
+FormlyTransformer [![Build Status](https://travis-ci.org/wieldo/angular-formly-transformer.svg)](https://travis-ci.org/wieldo/angular-formly-transformer)
 ==========
 
 Better way of field transformation in [Angular-Formly].
