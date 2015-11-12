@@ -43,6 +43,7 @@ Package.onUse(function (api) {
 
 Package.onTest(function(api) {
     api.use([
+        'underscore@1.0.4',
         'sanjo:jasmine@0.20.2',
         'velocity:helpers',
         'velocity:html-reporter',
