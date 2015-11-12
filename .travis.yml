@@ -3,5 +3,8 @@ node_js:
   - "0.12"
 before_install:
   - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-meteor-packages/master/configure.sh | /bin/sh"
+  - "npm install -g velocity-cli"
 before_script:
   - "export PATH=$HOME/.meteor:$PATH"
+script:
+  - "velocity test-package wieldo:angular-formly-transformer --ci"
