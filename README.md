@@ -1,4 +1,4 @@
-FormlyTransformer
+FormlyTransformer [![Build Status](https://travis-ci.org/wieldo/angular-formly-transformer.svg)](https://travis-ci.org/wieldo/angular-formly-transformer)
 ==========
 
 Better way of field transformation in [Angular-Formly].
@@ -22,6 +22,10 @@ angular.module('myApp', [
     'formlyTransformer'
   ])
 ```
+
+## formlyTransformer service
+
+see [formlyTransformer API]
 
 ## How to use it
 
@@ -89,5 +93,6 @@ angular.module('myAppName', [
 
 [Angular-Formly]: http://angular-formly.com
 [formlyConfig]: http://docs.angular-formly.com/v7.2.3/docs/formlyconfig
+[formlyTransformer API]: api.md
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wieldo/angular-formly-transformer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
