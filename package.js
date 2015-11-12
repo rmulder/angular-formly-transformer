@@ -46,7 +46,7 @@ Package.onTest(function(api) {
         'underscore@1.0.4',
         'sanjo:jasmine@0.20.2',
         'velocity:helpers',
-        'velocity:html-reporter',
+        'velocity:console-reporter',
         'angular:angular-mocks@1.4.7',
         'wieldo:angular-formly-transformer@1.0.0'
     ]);
