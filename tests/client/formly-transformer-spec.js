@@ -16,7 +16,7 @@ describe('formlyTransformer', function () {
 
     it('should have createError method which returns Error with prefixed message', function () {
         var errorMsg = "[formlyTransformer] test";
-        
+
         expect(function () {
             throw formlyTransformer.createError('test');
         }).toThrowError(Error, errorMsg);
@@ -66,12 +66,22 @@ describe('formlyTransformer', function () {
                 }
             }
         ];
-        
+
         formlyTransformer.register(transformer);
         transformed = formlyTransformer.run(fields, {}, {}, {});
 
         expect(spy).toHaveBeenCalled();
         expect(transformed).toEqual(expected);
 
+    });
+
+    it('should have createError method in transformer context', function () {
+        formlyTransformer.register(function () {
+            throw this.createError('test');
+        });
+
+        expect(function () {
+            formlyTransformer.run([{}, {}], {}, {}, {});
+        }).toThrowError(Error, "[formlyTransformer] test");
     });
 });
