@@ -20,7 +20,8 @@
 
     <section class="main-content">
       <h1>
-<a id="formlytransformer" class="anchor" href="#formlytransformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>FormlyTransformer</h1>
+<a id="formlytransformer-" class="anchor" href="#formlytransformer-" aria-hidden="true"><span class="octicon octicon-link"></span></a>FormlyTransformer <a href="https://travis-ci.org/wieldo/angular-formly-transformer"><img src="https://travis-ci.org/wieldo/angular-formly-transformer.svg" alt="Build Status"></a>
+</h1>
 
 <p>Better way of field transformation in <a href="http://angular-formly.com">Angular-Formly</a>.</p>
 
@@ -43,6 +44,11 @@
     <span class="pl-s"><span class="pl-pds">'</span>formly<span class="pl-pds">'</span></span>,
     <span class="pl-s"><span class="pl-pds">'</span>formlyTransformer<span class="pl-pds">'</span></span>
   ])</pre></div>
+
+<h2>
+<a id="formlytransformer-service" class="anchor" href="#formlytransformer-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>formlyTransformer service</h2>
+
+<p>see <a href="api.md">formlyTransformer API</a></p>
 
 <h2>
 <a id="how-to-use-it" class="anchor" href="#how-to-use-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use it</h2>
@@ -83,7 +89,7 @@ formlyTransform service just wraps all functions into one place.</p>
   <span class="pl-k">function</span> <span class="pl-en">runApp</span>(<span class="pl-smi">formlyTransformer</span>) {
         <span class="pl-c">// label upperCaseLabel transformer</span>
         formlyTransformer.register(<span class="pl-k">function</span>(<span class="pl-smi">fields</span>) {
-            fields.forEach((<span class="pl-smi">field</span>)<span class="pl-k"> =&gt;</span> {
+            fields.forEach((<span class="pl-smi">field</span>) <span class="pl-k">=&gt;</span> {
                 <span class="pl-k">if</span>(field.transformers.upperCaseLabel <span class="pl-k">&amp;&amp;</span> field.templateOptions <span class="pl-k">&amp;&amp;</span> field.templateOptions.<span class="pl-c1">label</span>) {
                     field.templateOptions.<span class="pl-c1">label</span> <span class="pl-k">=</span> field.templateOptions.<span class="pl-c1">label</span>.<span class="pl-c1">toUpperCase</span>();
                 }
