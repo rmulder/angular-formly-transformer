@@ -1,5 +1,8 @@
-FormlyTransformer [![Build Status](https://travis-ci.org/wieldo/angular-formly-transformer.svg)](https://travis-ci.org/wieldo/angular-formly-transformer)
+FormlyTransformer
 ==========
+
+[![Build Status](https://travis-ci.org/wieldo/angular-formly-transformer.svg)](https://travis-ci.org/wieldo/angular-formly-transformer)
+[![Coverage Status](https://coveralls.io/repos/wieldo/angular-formly-transformer/badge.svg?branch=master&service=github)](https://coveralls.io/github/wieldo/angular-formly-transformer?branch=master)
 
 Better way of field transformation in [Angular-Formly].
 
