@@ -1,8 +1,10 @@
 FormlyTransformer
 ==========
 
+[![GitHub version](https://badge.fury.io/gh/wieldo%2Fangular-formly-transformer.svg)](https://badge.fury.io/gh/wieldo%2Fangular-formly-transformer)
 [![Build Status](https://travis-ci.org/wieldo/angular-formly-transformer.svg)](https://travis-ci.org/wieldo/angular-formly-transformer)
 [![Coverage Status](https://coveralls.io/repos/wieldo/angular-formly-transformer/badge.svg?branch=master&service=github)](https://coveralls.io/github/wieldo/angular-formly-transformer?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/ed283d031a5f4bcf9e0114112881b7e5)](https://www.codacy.com/app/mys-sterowiec/angular-formly-transformer)
 
 Better way of field transformation in [Angular-Formly].
 
