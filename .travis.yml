@@ -9,10 +9,9 @@ before_install:
   - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-meteor-packages/master/configure.sh | /bin/sh"
 before_script:
   - "export PATH=$HOME/.meteor:$PATH"
-  - "npm install -g velocity-cli"
 script:
   - "npm run eslint"
-  - "npm run test"
-  - "velocity test-package ./ --ci"
+  - "npm run test:karma"
+  - "npm run test:velocity"
 after_success:
   - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
