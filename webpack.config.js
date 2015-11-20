@@ -1,8 +1,8 @@
 require('babel/register');
 require('argv-set-env')();
-const path = require('path');
-const webpack = require('webpack');
-const _ = require('lodash');
+var path = require('path');
+var webpack = require('webpack');
+var _ = require('lodash');
 
 module.exports = config();
 
@@ -21,7 +21,7 @@ function config() {
             config = _.merge(configCommon, devConfig());
             break;
         default:
-            throw new Error(`NODE_ENV is invalid (${process.env.NODE_ENV})`);
+            throw new Error('NODE_ENV is invalid');
     }
     return config;
 }
