@@ -1,0 +1,57 @@
+{
+  "name": "formly-transformer",
+  "version": "1.1.2",
+  "description": "Automate configuration of fields in Angular-Formly",
+  "main": "dist/angular-formly-transformer.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wieldo/angular-formly-transformer.git"
+  },
+  "author": "",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.githubusercontent.com/formly-js/angular-formly-transformer/master/LICENSE"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/wieldo/angular-formly-transformer/issues"
+  },
+  "keywords": [
+    "angular",
+    "forms",
+    "angular-formly",
+    "formly",
+    "angularjs",
+    "angular forms",
+    "json forms",
+    "form library"
+  ],
+  "homepage": "https://github.com/wieldo/angular-formly-transformer#readme",
+  "devDependencies": {
+    "angular-mocks": "1.4.7",
+    "babel-core": "^5.8.0",
+    "babel-loader": "^5.4.0",
+    "coveralls": "^2.11.4",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.15",
+    "karma-babel-preprocessor": "~5.2.2",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-coverage": "^0.5.3",
+    "karma-jasmine": "^0.3.6",
+    "karma-webpack": "^1.7.0",
+    "path": "^0.12.7",
+    "webpack": "^1.12.6"
+  },
+  "dependencies": {
+    "angular": "1.4.7",
+    "angular-formly": "^7.3.0",
+    "angular2-now": "^0.3.15"
+  }
+}

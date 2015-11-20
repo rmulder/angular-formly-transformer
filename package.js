@@ -32,8 +32,7 @@ Package.onUse(function (api) {
     api.imply(packages.imply);
 
     api.addFiles([
-        'lib/client/main.js',
-        'lib/client/formly-transformer.js'
+        'dist/formly-transformer.js'
     ], client);
 
 });
