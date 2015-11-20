@@ -11,6 +11,13 @@ module.exports = function (config) {
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: './',
 
+        plugins: [
+            'karma-jasmine',
+            'karma-coverage',
+            'karma-webpack',
+            'karma-chrome-launcher',
+            'karma-babel-preprocessor'
+        ],
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -83,4 +90,4 @@ module.exports = function (config) {
         // how many browser should be started simultanous
         concurrency: Infinity
     })
-}
+};
