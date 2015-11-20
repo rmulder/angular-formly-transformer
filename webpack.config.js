@@ -7,9 +7,8 @@ const _ = require('lodash');
 module.exports = config();
 
 function config() {
-    'use strict';
-    let config;
-    let configCommon = commonConfig();
+    var config;
+    var configCommon = commonConfig();
 
     switch (process.env.NODE_ENV) {
         case 'development':
