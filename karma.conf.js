@@ -2,7 +2,7 @@ const path = require('path');
 const webpackConfig = require('./webpack.config.js');
 const entry = path.join(webpackConfig.context, webpackConfig.entry);
 const preprocessors = {};
-preprocessors[entry] = ['webpack'];
+preprocessors[entry] = ['webpack', 'coverage'];
 preprocessors['tests/client/formly-transformer-spec.js'] = ['babel'];
 
 module.exports = function (config) {
