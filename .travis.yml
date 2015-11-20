@@ -13,3 +13,5 @@ before_script:
 script:
   - "karma start"
   - "velocity test-package ./ --ci"
+after_success:
+  - "cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage"
