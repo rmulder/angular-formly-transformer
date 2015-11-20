@@ -11,6 +11,7 @@ before_script:
   - "export PATH=$HOME/.meteor:$PATH"
 script:
   - "npm run eslint"
+  - "npm run build:dist"
   - "npm run test:karma"
   - "npm run test:velocity"
 after_success:
