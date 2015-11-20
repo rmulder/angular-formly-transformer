@@ -2,6 +2,7 @@ const path = require('path');
 const webpackConfig = require('./webpack.config.js');
 const entry = path.join(webpackConfig.context, webpackConfig.entry);
 const preprocessors = {};
+
 preprocessors[entry] = ['webpack', 'coverage'];
 preprocessors['tests/client/formly-transformer-spec.js'] = ['babel'];
 
@@ -74,7 +75,7 @@ module.exports = function (config) {
 
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+        autoWatch: false,
 
 
         // start these browsers

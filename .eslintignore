@@ -1,10 +1,3 @@
-.meteor
-tests
-**/tests
-
-**/*.md
-**/*.html
-**/*.css
-**/*.json
-**/*.yaml
-**/*.yml
+node_modules
+coverage
+dist

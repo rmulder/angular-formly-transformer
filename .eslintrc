@@ -13,7 +13,8 @@
     // thrid-party packages globals
     "SimpleSchema": false,
     "angular2now": false,
-    "angular": false
+    "angular": false,
+    "inject": false
   },
   "rules": {
     "no-unused-vars": [

@@ -5,21 +5,32 @@ FormlyTransformer
 [![Build Status](https://travis-ci.org/wieldo/angular-formly-transformer.svg)](https://travis-ci.org/wieldo/angular-formly-transformer)
 [![Coverage Status](https://coveralls.io/repos/wieldo/angular-formly-transformer/badge.svg?branch=master&service=github)](https://coveralls.io/github/wieldo/angular-formly-transformer?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/ed283d031a5f4bcf9e0114112881b7e5)](https://www.codacy.com/app/mys-sterowiec/angular-formly-transformer)
+[![Coverage Status](https://coveralls.io/repos/wieldo/angular-formly-transformer/badge.svg?branch=master&service=github)](https://coveralls.io/github/wieldo/angular-formly-transformer?branch=master)
 
 Better way of field transformation in [Angular-Formly].
 
 ## Install
 
+### meteor
+
 ```
 meteor add wieldo:angular-formly-transformer
 ```
 
+### npm
+
+```
+npm install angular-formly-transformer
+```
+
+### bower
+
+```
+bower install angular-formly-transformer
+```
+
 
 ## Getting Started
-
-1. Add package using `meteor add` (see above)
-2. Add angular-formly files to your project
-3. Add the following dependencies to your AngularJS module:
 
 ```javascript
 angular.module('myApp', [

@@ -6,6 +6,26 @@ describe('formlyTransformer', () => {
     let formlyTransformer;
 
     //
+    // helpers
+    //
+
+    function failRegister(values, errorMsg) {
+        values.forEach((value) => {
+            expect(() => {
+                formlyTransformer.register(value);
+            }).toThrowError(errorMsg);
+        });
+    }
+
+    function passRegister(values, errorMsg) {
+        values.forEach((value) => {
+            expect(() => {
+                formlyTransformer.register(value);
+            }).not.toThrowError(errorMsg);
+        });
+    }
+
+    //
     // tests
     //
 
@@ -34,16 +54,10 @@ describe('formlyTransformer', () => {
         const errorMsg = "[formlyTransformer] Transformer is not a function";
         const values = [undefined, false, true, 1, 0, -1, 's', '1', '0', '-1', 'true', 'false', {}, null, ['s']];
 
-        expect(() => {
-            formlyTransformer.register(() => {
-            });
-        }).not.toThrowError(errorMsg);
+        passRegister([() => {
+        }], errorMsg);
 
-        values.forEach((value) => {
-            expect(() => {
-                formlyTransformer.register(value);
-            }).toThrowError(errorMsg);
-        });
+        failRegister(values, errorMsg);
     });
 
     it('should run registered transformers', () => {

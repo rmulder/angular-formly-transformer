@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("angular"), require("angular2now"), require("angular-formly"));
+	else if(typeof define === 'function' && define.amd)
+		define(["angular", "angular2now", "angular-formly"], factory);
+	else {
+		var a = typeof exports === 'object' ? factory(require("angular"), require("angular2now"), require("angular-formly")) : factory(root["angular"], root["angular2now"], root["ngFormly"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -47,35 +57,34 @@
 	'use strict';
 
 	__webpack_require__(1);
-	__webpack_require__(2);
-	angular2now = __webpack_require__(3);
-	//angular2now = require('angular2-now');
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(2);
 
 	var SetModule = _require.SetModule;
 
-	SetModule('formlyTransformer', ['formly']);
+	// set module
+	SetModule('formlyTransformer', [__webpack_require__(3)]);
 
+	// load service
 	__webpack_require__(4);
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = angular;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
-	module.exports = undefined;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = angular2now;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
 /* 4 */
@@ -87,7 +96,7 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(2);
 
 	var SetModule = _require.SetModule;
 	var Service = _require.Service;
@@ -220,4 +229,6 @@
 	 */
 
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;

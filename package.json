@@ -3,23 +3,27 @@
   "version": "1.1.2",
   "description": "Automate configuration of fields in Angular-Formly",
   "main": "dist/angular-formly-transformer.js",
+  "authors": [
+    "Kamil Kisiela <kamil.kisiela@ster-project.pl>"
+  ],
+  "licenses": "MIT",
+  "homepage": "https://github.com/wieldo/angular-formly-transformer#readme",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:dist": "webpack --set-env-NODE_ENV=development",
+    "build:prod": "webpack --set-env-NODE_ENV=production",
+    "build": "npm run build:dist & npm run build:prod",
+    "eslint:test": "eslint tests/**/*.js",
+    "eslint:lib": "eslint lib/**/*.js",
+    "eslint": "npm run eslint:test -s & npm run eslint:lib -s",
+    "test": "karma start --single-run --set-env-NODE_ENV=test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wieldo/angular-formly-transformer.git"
   },
-  "author": "",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://raw.githubusercontent.com/formly-js/angular-formly-transformer/master/LICENSE"
-    }
-  ],
   "bugs": {
     "url": "https://github.com/wieldo/angular-formly-transformer/issues"
   },
@@ -33,9 +37,10 @@
     "json forms",
     "form library"
   ],
-  "homepage": "https://github.com/wieldo/angular-formly-transformer#readme",
   "devDependencies": {
     "angular-mocks": "1.4.7",
+    "babel": "^5.8.0",
+    "babel-eslint": "^4.1.3",
     "babel-core": "^5.8.0",
     "babel-loader": "^5.4.0",
     "codacy-coverage": "^1.1.3",
@@ -48,9 +53,11 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-webpack": "^1.7.0",
+    "lodash": "^3.10.1",
     "path": "^0.12.7",
     "phantomjs": "^1.9.18",
-    "webpack": "^1.12.6"
+    "webpack": "^1.12.6",
+    "argv-set-env": "^1.0.0"
   },
   "dependencies": {
     "angular": "1.4.7",
