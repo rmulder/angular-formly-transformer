@@ -1,4 +1,4 @@
-//require('babel/register');
+require('babel/register');
 require('argv-set-env')();
 const path = require('path');
 const webpack = require('webpack');
