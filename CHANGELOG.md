@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased] - 2015-11-20
+## [1.2.2] - 2015-11-20
 ### Fixed
 - missing dist files
 
@@ -56,7 +56,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.0.1 - 2015-11-09
 
-[Unreleased]: https://github.com/wieldo/angular-formly-transformer/compare/v1.2.1...HEAD
+[1.2.2]: https://github.com/wieldo/angular-formly-transformer/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/wieldo/angular-formly-transformer/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/wieldo/angular-formly-transformer/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/wieldo/angular-formly-transformer/compare/v1.1.1...v1.1.2

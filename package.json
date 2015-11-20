@@ -1,8 +1,8 @@
 {
   "name": "angular-formly-transformer",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Automate configuration of fields in Angular-Formly",
-  "main": "dist/angular-formly-transformer.js",
+  "main": "dist/formly-transformer.js",
   "authors": [
     "Kamil Kisiela <kamil.kisiela@ster-project.pl>"
   ],
