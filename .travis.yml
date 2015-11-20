@@ -10,8 +10,6 @@ before_install:
 before_script:
   - "export PATH=$HOME/.meteor:$PATH"
   - "npm install -g velocity-cli"
-  - "npm install -g karma-cli"
-  - "npm list"
 script:
   - "karma start"
   - "velocity test-package ./ --ci"
