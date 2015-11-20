@@ -10,19 +10,11 @@
     "es6": true
   },
   "globals": {
-    // App globals
-    "Wieldo": true,
-    "Users": true,
-    "Workspaces": true,
-    "Fixtures": true,
-    "i18n": true,
     // thrid-party packages globals
     "SimpleSchema": false,
     "angular2now": false,
-    "AccountsMeld": false,
-    "ServiceConfiguration": false,
-    "YAML": false,
-    "angular": false
+    "angular": false,
+    "inject": false
   },
   "rules": {
     "no-unused-vars": [

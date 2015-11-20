@@ -1,0 +1,36 @@
+{
+  "name": "formly-transformer",
+  "version": "1.2.0",
+  "description": "Automate configuration of fields in Angular-Formly",
+  "main": "dist/formly-transformer.js",
+  "authors": [
+    "Kamil Kisiela <kamil.kisiela@ster-project.pl>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/wieldo/angular-formly-transformer",
+  "ignore": [
+    "**/.*",
+    "configs",
+    "coverage",
+    "lib",
+    "node_modules",
+    "bower_components",
+    "tests",
+    "package.js",
+    "package.json",
+    "karma.conf.js",
+    "webpack.config.js"
+  ],
+  "keywords": [
+    "AngularJs",
+    "form",
+    "formly",
+    "json",
+    "html"
+  ],
+  "dependencies": {
+    "angular": "^1.4.0",
+    "angular-formly": "^7.3.0",
+    "angular2-now": "^0.3.15"
+  }
+}

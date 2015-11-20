@@ -1,10 +1,19 @@
+sudo: false
 language: node_js
 node_js:
   - "0.12"
+cache:
+  directories:
+    - node_modules
 before_install:
   - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-meteor-packages/master/configure.sh | /bin/sh"
-  - "npm install -g velocity-cli"
 before_script:
   - "export PATH=$HOME/.meteor:$PATH"
 script:
-  - "velocity test-package ./ --ci"
+  - "npm run eslint"
+  - "npm run build:dist"
+  - "npm run test:karma"
+  - "npm run test:velocity"
+after_success:
+  - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  - "cat ./coverage/lcov.info | ./node_modules/.bin/codecov"
