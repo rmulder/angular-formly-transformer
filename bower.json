@@ -10,6 +10,7 @@
   "homepage": "https://github.com/wieldo/angular-formly-transformer",
   "ignore": [
     "**/.*",
+    "configs",
     "coverage",
     "lib",
     "node_modules",
