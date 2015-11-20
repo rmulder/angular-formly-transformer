@@ -4,7 +4,8 @@ module.exports = {
     context: path.resolve(__dirname, '../../lib/client'),
     entry: './main.js',
     output: {
-        libraryTarget: 'umd'
+        libraryTarget: 'umd',
+        library: 'ngFormlyTransformer'
     },
     externals: {
         "angular": "angular",
