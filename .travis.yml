@@ -1,19 +1,25 @@
-sudo: false
+sudo: required
 language: node_js
-node_js:
-  - "0.12"
 cache:
   directories:
+    # cache node modules
     - node_modules
+notifications:
+  # disable email notification
+  email: false
+node_js:
+  # use same node version as meteor does
+  - "0.12"
 before_install:
-  - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-meteor-packages/master/configure.sh | /bin/sh"
+  # use firefox
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 before_script:
-  - "export PATH=$HOME/.meteor:$PATH"
+  # remove unused node modules from cache
+  - "npm prune"
 script:
-  - "npm run eslint"
-  - "npm run build:dist"
-  - "npm run test:karma"
-  - "npm run test:velocity"
+  # run karma
+  - "npm run test"
 after_success:
-  - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
-  - "cat ./coverage/lcov.info | ./node_modules/.bin/codecov"
+  # send code-coverage report to coveralls
+  - "npm run coverage:coveralls"

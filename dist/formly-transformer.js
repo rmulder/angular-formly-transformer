@@ -1,13 +1,14 @@
+/*! angular-formly-transformer v1.3.0 */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("angular"), require("angular2now"), require("angular-formly"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["angular", "angular2now", "angular-formly"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["ngFormlyTransformer"] = factory(require("angular"), require("angular2now"), require("angular-formly"));
+		exports["formlyTransformer"] = factory();
 	else
-		root["ngFormlyTransformer"] = factory(root["angular"], root["angular2now"], root["ngFormly"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+		root["formlyTransformer"] = factory();
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -52,43 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(1);
-
-	var _require = __webpack_require__(2);
-
-	var SetModule = _require.SetModule;
-
-	// set module
-	SetModule('formlyTransformer', [__webpack_require__(3)]);
-
-	// load service
-	__webpack_require__(4);
-
-/***/ },
-/* 1 */
 /***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -96,137 +61,113 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var _require = __webpack_require__(2);
-
-	var SetModule = _require.SetModule;
-	var Service = _require.Service;
-	var Inject = _require.Inject;
-
-	SetModule('formlyTransformer');
-
-	/**
-	 * AngularJS Service
-	 *
-	 * @property formlyTransformer
-	 */
-
 	var formlyTransformer = (function () {
-	    function formlyTransformer(formlyConfig) {
-	        var _this = this;
+	  function formlyTransformer(formlyConfig) {
+	    var _this = this;
 
-	        _classCallCheck(this, _formlyTransformer);
+	    _classCallCheck(this, formlyTransformer);
 
-	        this._transformers = [];
+	    this.formlyConfig = formlyConfig;
+	    this._transformers = [];
 
-	        this.formlyConfig = formlyConfig;
+	    if (!angular.isArray(this.formlyConfig.extras.fieldTransform)) {
+	      this.formlyConfig.extras.fieldTransform = [];
+	    }
 
-	        if (!angular.isArray(this.formlyConfig.extras.fieldTransform)) {
-	            this.formlyConfig.extras.fieldTransform = [];
-	        }
+	    // push to fieldTransform
+	    this.formlyConfig.extras.fieldTransform.push(function () {
+	      return _this.run.apply(_this, arguments);
+	    });
+	  }
 
-	        // push to fieldTransform
-	        this.formlyConfig.extras.fieldTransform.push(function () {
-	            return _this.run.apply(_this, arguments);
-	        });
+	  /**
+	   * Register transformer
+	   *
+	   * @method formlyTransformer.register
+	   *
+	   * @param {function} transformer - modification function (see formlyConfig.extras.fieldTransform)
+	   */
+
+	  _createClass(formlyTransformer, [{
+	    key: 'register',
+	    value: function register(transformer) {
+	      if ("function" !== typeof transformer) {
+	        throw this.createError('Transformer is not a function');
+	      }
+	      this._transformers.push(transformer);
 	    }
 
 	    /**
-	     * Register transformer
+	     *  Runs all registered transformers and returns the modified fields array.
+	     *  You can use it manually and with custom arguments but it is being triggered automatically by angular-formly module
 	     *
-	     * @method formlyTransformer.register
-	     *
-	     * @param {function} transformer - modification function (see formlyConfig.extras.fieldTransform)
+	     * @method formlyTransformer.run
+	     * @param {array} fields - see formlyConfig.extras.fieldTransform
+	     * @param {object} model - see formlyConfig.extras.fieldTransform
+	     * @param {object} form - see formlyConfig.extras.fieldTransform
+	     * @param {object} formOptions - see formlyConfig.extras.fieldTransform
+	     * @returns {array}
 	     */
+	  }, {
+	    key: 'run',
+	    value: function run(fields) {
+	      var _this2 = this;
 
-	    _createClass(formlyTransformer, [{
-	        key: 'register',
-	        value: function register(transformer) {
-	            if ("function" !== typeof transformer) {
-	                throw this.createError('Transformer is not a function');
-	            }
-	            this._transformers.push(transformer);
-	        }
+	      for (var _len = arguments.length, formlyFieldTransformArgs = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	        formlyFieldTransformArgs[_key - 1] = arguments[_key];
+	      }
 
-	        /**
-	         *  Runs all registered transformers and returns the modified fields array.
-	         *  You can use it manually and with custom arguments but it is being triggered automatically by angular-formly module
-	         *
-	         * @method formlyTransformer.run
-	         * @param {array} fields - see formlyConfig.extras.fieldTransform
-	         * @param {object} model - see formlyConfig.extras.fieldTransform
-	         * @param {object} form - see formlyConfig.extras.fieldTransform
-	         * @param {object} formOptions - see formlyConfig.extras.fieldTransform
-	         * @returns {array}
-	         */
-	    }, {
-	        key: 'run',
-	        value: function run(fields) {
-	            var _this2 = this;
+	      // add transformers object to all fields
+	      if (angular.isArray(fields)) {
+	        fields.forEach(function (field) {
+	          if (!field.transformers) {
+	            field.transformers = {};
+	          }
+	        });
+	      }
 
-	            for (var _len = arguments.length, formlyFieldTransformArgs = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	                formlyFieldTransformArgs[_key - 1] = arguments[_key];
-	            }
+	      // run all transformers
+	      this._transformers.forEach(function (transformer) {
+	        transformer.call.apply(transformer, [{
+	          createError: function createError(msg) {
+	            return _this2.createError(msg);
+	          }
+	        }, fields].concat(formlyFieldTransformArgs));
+	      });
 
-	            // add transformers object to all fields
-	            if (angular.isArray(fields)) {
-	                fields.forEach(function (field) {
-	                    if (!field.transformers) {
-	                        field.transformers = {};
-	                    }
-	                });
-	            }
+	      // remove transformers
+	      fields.forEach(function (field) {
+	        delete field.transformers;
+	      });
 
-	            // run all transformers
-	            this._transformers.forEach(function (transformer) {
-	                transformer.call.apply(transformer, [{
-	                    createError: function createError(msg) {
-	                        return _this2.createError(msg);
-	                    }
-	                }, fields].concat(formlyFieldTransformArgs));
-	            });
+	      return fields;
+	    }
 
-	            // remove transformers
-	            fields.forEach(function (field) {
-	                delete field.transformers;
-	            });
+	    //
+	    // helpers
+	    //
 
-	            return fields;
-	        }
+	    /**
+	     * Create Error object with prefixed message
+	     *
+	     * @method formlyTransformer.createError
+	     *
+	     * @param {string} msg - error message
+	     * @returns {Error}
+	     */
+	  }, {
+	    key: 'createError',
+	    value: function createError(msg) {
+	      return new Error('[formlyTransformer] ' + msg);
+	    }
+	  }]);
 
-	        //
-	        // helpers
-	        //
-
-	        /**
-	         * Create Error object with prefixed message
-	         *
-	         * @method formlyTransformer.createError
-	         *
-	         * @param {string} msg - error message
-	         * @returns {Error}
-	         */
-	    }, {
-	        key: 'createError',
-	        value: function createError(msg) {
-	            return new Error('[formlyTransformer] ' + msg);
-	        }
-	    }]);
-
-	    var _formlyTransformer = formlyTransformer;
-	    formlyTransformer = Inject(['formlyConfig'])(formlyTransformer) || formlyTransformer;
-	    formlyTransformer = Service({
-	        name: 'formlyTransformer'
-	    })(formlyTransformer) || formlyTransformer;
-	    return formlyTransformer;
+	  return formlyTransformer;
 	})();
 
-	// injectables
+	formlyTransformer.$inject = ['formlyConfig'];
 
-	/**
-	 *
-	 * @type {array}
-	 * @private
-	 */
+	angular.module('formlyTransformer', ['formly']).service('formlyTransformer', formlyTransformer);
 
 /***/ }
 /******/ ])

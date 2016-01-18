@@ -1,6 +1,5 @@
 {
   "name": "angular-formly-transformer",
-  "version": "1.2.2",
   "description": "Automate configuration of fields in Angular-Formly",
   "main": "dist/formly-transformer.js",
   "authors": [

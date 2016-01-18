@@ -1,54 +1,36 @@
-var client = 'client';
-
 Package.describe({
-    name: "wieldo:angular-formly-transformer",
-    summary: "Automate configuration of fields in Angular-Formly",
-    version: "1.2.2",
+    name: 'wieldo:angular-formly-transformer',
+    summary: 'Automate configuration of fields in Angular-Formly',
+    version: '1.3.0',
 
     documentation: 'README.md',
     git: 'https://github.com/wieldo/angular-formly-transformer.git'
 });
 
-Package.onUse(function (api) {
+Npm.depends({
+  'angular-formly-transformer': '1.3.0'
+});
 
+Package.onUse(function (api) {
     var packages = {
         use: [
-            'angular@1.0.0',
-            'angular:angular@1.4.7',
-            'underscore@1.0.4',
-            'pbastowski:angular-babel@1.0.2',
-            'pbastowski:angular2-now@0.3.13',
-            'wieldo:angular-formly@7.3.2'
+            'angular:angular@1.4.0',
+            'formly:angular-formly@7.3.9_3'
         ],
         imply: [
-            'wieldo:angular-formly'
+            'formly:angular-formly'
         ]
     };
 
-    api.versionsFrom("METEOR@1.0");
+    api.versionsFrom('METEOR@1.0');
 
     api.use(packages.use);
-
     api.imply(packages.imply);
 
     api.addFiles([
-        'dist/formly-transformer.js'
-    ], client);
+      '.npm/package/node_modules/angular-formly-transformer/dist/formly-transformer.js'
+    ], 'client', {
+      transpile: false
+    });
 
-});
-
-Package.onTest(function(api) {
-    api.use([
-        'pbastowski:angular-babel@1.0.2',
-        'pbastowski:angular2-now@0.3.13',
-        'sanjo:jasmine@0.20.2',
-        'velocity:helpers',
-        'velocity:console-reporter',
-        'angular:angular-mocks@1.4.7',
-        'wieldo:angular-formly-transformer'
-    ]);
-    
-    api.addFiles([
-        'tests/client/formly-transformer-spec.js'
-    ], client);
 });

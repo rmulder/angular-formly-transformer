@@ -1,3 +1,5 @@
+import '../src/formly-transformer';
+
 describe('formlyTransformer', () => {
     //
     // vars
@@ -30,7 +32,7 @@ describe('formlyTransformer', () => {
     //
 
     beforeEach(() => {
-        module('formlyTransformer');
+        window.module('formlyTransformer');
         inject(function (_formlyTransformer_) {
             formlyTransformer = _formlyTransformer_;
         });
