@@ -46,21 +46,10 @@ gulp.task('meteor', function() {
   // current version
   var version = require('./package.json').version;
   // regex for package version and npm dependency version
-  var regex = {
-    version: /(version: ')([^\']+)'/gi,
-    npm: /('angular-formly-transformer': ')([^\']+)'/gi,
-    shrinkwrap: /("version": ")([^\"]+)"/gi
-  };
-
-  gulp.src('.npm/package/npm-shrinkwrap.json')
-    // update version in npm-shrinkwrap
-    .pipe(replace(regex.shrinkwrap, '$1' + version + '"'))
-    .pipe(gulp.dest('.npm/package'));
+  var regex = /(version: ')([^\']+)'/gi;
 
   return gulp.src('package.js')
     // update version of meteor package
-    .pipe(replace(regex.version, '$1' + version + "'"))
-    // update version of npm dependency
-    .pipe(replace(regex.npm, '$1' + version + "'"))
+    .pipe(replace(regex, '$1' + version + "'"))
     .pipe(gulp.dest('./'));
 });

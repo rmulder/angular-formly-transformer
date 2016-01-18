@@ -28,7 +28,7 @@ Package.onUse(function (api) {
     api.imply(packages.imply);
 
     api.addFiles([
-      '.npm/package/node_modules/angular-formly-transformer/dist/formly-transformer.js'
+      'dist/formly-transformer.js'
     ], 'client', {
       transpile: false
     });
